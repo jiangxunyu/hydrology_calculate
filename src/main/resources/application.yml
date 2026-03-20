@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: hydrology_calculate
+  datasource:
+    url: jdbc:sqlite:hydrology_info.db # 指定数据库文件路径，这里是相对路径
+    driver-class-name: org.sqlite.JDBC
+    # SQLite 默认不需要用户名和密码，通常留空即可
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update # 可选 create, create-drop, update, validate, none
+    show-sql: true # 开发时显示SQL语句，便于调试
+    # 配置 SQLite 方言至关重要，否则可能遇到语法兼容性问题
+    database-platform: org.sqlite.hibernate.dialect.SQLiteDialect
+
+server:
+  servlet:
+    context-path: /api/hydrology
