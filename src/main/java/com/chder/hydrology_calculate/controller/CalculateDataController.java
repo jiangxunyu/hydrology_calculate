@@ -5,7 +5,6 @@ import com.chder.hydrology_calculate.service.CalculateDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,7 +33,7 @@ public class CalculateDataController {
     @GetMapping("/queryAllData")
     @ResponseBody
     public Result queryAllData() {
-        List<HydrologyInfo> hydrologyInfoList = new ArrayList<>();
+        List<HydrologyInfo> hydrologyInfoList = calculateDataService.queryAll();
         return Result.success(hydrologyInfoList);
     }
 

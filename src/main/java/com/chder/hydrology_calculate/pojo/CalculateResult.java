@@ -8,7 +8,7 @@ public class CalculateResult {
     /**
      * 摩擦阻力系数
      */
-    private double r;
+    private double rt;
 
     /**
      * 管段水流量

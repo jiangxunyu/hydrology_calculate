@@ -5,6 +5,8 @@ import com.chder.hydrology_calculate.pojo.CalculateResult;
 import com.chder.hydrology_calculate.pojo.HydrologyInfo;
 import com.chder.hydrology_calculate.pojo.HydrologyInfoDto;
 
+import java.util.List;
+
 public interface CalculateDataService {
 
     Integer getHydrologyCount();
@@ -15,4 +17,6 @@ public interface CalculateDataService {
     HydrologyInfo getHydrologyInfoByLocation(String longitude, String latitude);
 
     CalculateResult calculateData(CalculateParams calculateParams);
+
+    List<HydrologyInfo> queryAll();
 }

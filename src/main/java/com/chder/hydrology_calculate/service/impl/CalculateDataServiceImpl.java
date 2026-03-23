@@ -49,7 +49,6 @@ public class CalculateDataServiceImpl implements CalculateDataService {
      * @return
      */
     public HydrologyInfo getHydrologyInfoByLocation(String longitude, String latitude) {
-        Integer hydrologyCount = getHydrologyCount();
         List<HydrologyInfo> byLongitudeAndLatitude = hydrologyInfoRepository.findByLongitudeAndLatitude(longitude, latitude);
         if (!CollectionUtils.isEmpty(byLongitudeAndLatitude)) {
             return byLongitudeAndLatitude.get(0);
@@ -76,11 +75,11 @@ public class CalculateDataServiceImpl implements CalculateDataService {
         //计算温差
         double tjs = tg - th;
         //摩擦阻力系数
-        double r = Math.round(0.11 * Math.pow(k / d, 0.25) * 100.0) / 100.0;
+        double rt = Math.round(0.11 * Math.pow(k / d, 0.25) * 100.0) / 100.0;
         //管段水流量
         double Gti = Math.round((0.86 * qf * asg) / tjs * 100.0) / 100.0;
         //比摩阻(沿程损失)
-        double R = Math.round(0.0625 * (r / p) * (Gti * Gti / (Math.pow(d, 5))) * 100.0) / 100.0;
+        double R = Math.round(0.0625 * (rt / p) * (Gti * Gti / (Math.pow(d, 5))) * 100.0) / 100.0;
         //流速
         double vi = Math.round(( 4 * Gti / (Math.PI * d * d)) * 3600 * 100.0) / 100.0;
 
@@ -101,7 +100,24 @@ public class CalculateDataServiceImpl implements CalculateDataService {
         double P = Math.round(R * (l + ld) * 100.0) / 100.0;
         //总流量
 
+        CalculateResult calculateResult = new CalculateResult();
+        calculateResult.setPj(pj);
+        calculateResult.setLd(ld);
+        calculateResult.setR(R);
+        calculateResult.setRt(rt);
+        calculateResult.setP(p);
+        calculateResult.setVi(vi);
+        calculateResult.setGti(Gti);
+        calculateResult.setTjs(tjs);
+        return calculateResult;
+    }
 
-        return null;
+    /**
+     * 查询所有数据
+     * @return
+     */
+    @Override
+    public List<HydrologyInfo> queryAll() {
+        return hydrologyInfoRepository.findAll();
     }
 }
