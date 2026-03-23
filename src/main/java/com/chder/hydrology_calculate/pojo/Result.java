@@ -1,4 +1,4 @@
-package com.chder.hydrology_calculate.model;
+package com.chder.hydrology_calculate.pojo;
 
 import com.chder.hydrology_calculate.enums.ErrorMsg;
 import org.springframework.http.HttpStatus;

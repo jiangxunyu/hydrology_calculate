@@ -1,6 +1,6 @@
 package com.chder.hydrology_calculate.dto;
 
-import com.chder.hydrology_calculate.model.HydrologyInfo;
+import com.chder.hydrology_calculate.pojo.HydrologyInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

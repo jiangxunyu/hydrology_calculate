@@ -1,4 +1,4 @@
-package com.chder.hydrology_calculate.model;
+package com.chder.hydrology_calculate.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

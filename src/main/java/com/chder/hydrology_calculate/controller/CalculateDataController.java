@@ -1,13 +1,12 @@
 package com.chder.hydrology_calculate.controller;
 
-import com.chder.hydrology_calculate.model.HydrologyInfo;
-import com.chder.hydrology_calculate.model.HydrologyInfoDto;
-import com.chder.hydrology_calculate.model.Result;
+import com.chder.hydrology_calculate.pojo.*;
 import com.chder.hydrology_calculate.service.CalculateDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/calculateData")
@@ -35,8 +34,8 @@ public class CalculateDataController {
     @GetMapping("/queryAllData")
     @ResponseBody
     public Result queryAllData() {
-        Map<String,Double> resultMap = null;
-        return Result.success(resultMap);
+        List<HydrologyInfo> hydrologyInfoList = new ArrayList<>();
+        return Result.success(hydrologyInfoList);
     }
 
     /**
@@ -53,14 +52,14 @@ public class CalculateDataController {
     }
 
     /**
-     * 计算水利信息数据查询
-     * @param hydrologyInfoDto
+     * 计算水利信息数据
+     * @param calculateParams
      * @return
      */
     @GetMapping("/calculateData")
     @ResponseBody
-    public Result queryData(@RequestBody HydrologyInfoDto hydrologyInfoDto) {
-        Map<String,Double> resultMap = null;
-        return Result.success(resultMap);
+    public Result calculateData(@RequestBody CalculateParams calculateParams) {
+        CalculateResult calculateResult = calculateDataService.calculateData(calculateParams);
+        return Result.success(calculateResult);
     }
 }

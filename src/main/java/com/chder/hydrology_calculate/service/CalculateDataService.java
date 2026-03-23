@@ -1,7 +1,9 @@
 package com.chder.hydrology_calculate.service;
 
-import com.chder.hydrology_calculate.model.HydrologyInfo;
-import com.chder.hydrology_calculate.model.HydrologyInfoDto;
+import com.chder.hydrology_calculate.pojo.CalculateParams;
+import com.chder.hydrology_calculate.pojo.CalculateResult;
+import com.chder.hydrology_calculate.pojo.HydrologyInfo;
+import com.chder.hydrology_calculate.pojo.HydrologyInfoDto;
 
 public interface CalculateDataService {
 
@@ -11,4 +13,6 @@ public interface CalculateDataService {
     HydrologyInfo saveHydrologyInfo(HydrologyInfoDto infoDto);
 
     HydrologyInfo getHydrologyInfoByLocation(String longitude, String latitude);
+
+    CalculateResult calculateData(CalculateParams calculateParams);
 }
